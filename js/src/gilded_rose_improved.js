@@ -53,7 +53,7 @@ class Item {
 
 }
 
-export function updateQuality(items) {
+function updateQuality(items) {
   items.forEach(item => {
     if (!item.checkNameItem(AGED) && !item.checkNameItem(BACKSTAGE)) {
       if (item.checkQualityMore(0)) {
@@ -79,24 +79,31 @@ export function updateQuality(items) {
       }
     }
     if (!item.checkNameItem(SULFURAS)) {
-      items[i].sellIn = items[i].sellIn - 1;
+      item.modifySellIn(-1);
     }
-    if (items[i].checkSellInLess(0)) {
-      if (!items[i].checkNameItem(AGED)) {
-        if (!items[i].checkNameItem(BACKSTAGE)) {
-          if (items[i].checkQualityMore(0)) {
-            if (!items[i].checkNameItem(SULFURAS)) {
-              items[i].modifyQuality(-1)
+    if (item.checkSellInLess(0)) {
+      if (!item.checkNameItem(AGED)) {
+        if (!item.checkNameItem(BACKSTAGE)) {
+          if (item.checkQualityMore(0)) {
+            if (!item.checkNameItem(SULFURAS)) {
+              item.modifyQuality(-1)
             }
           }
         } else {
-          items[i].modifyQuality(0)
+          item.modifyQuality(0)
         }
       } else {
-        if (items[i].checkQualityLess(50)) {
-          items[i].modifyQuality(1)
+        if (item.checkQualityLess(50)) {
+          item.modifyQuality(1)
         }
       }
     }
   });
 }
+
+let Item1= new Item(AGED, 0, 5);
+let Item2= new Item('foo2', 0, 0);
+let Item3= new Item('foo3', 2, 6);
+let items = [Item1, Item2, Item3]; // Array of Item objects
+updateQuality(items);
+console.log(items);
