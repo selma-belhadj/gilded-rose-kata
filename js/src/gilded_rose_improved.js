@@ -37,6 +37,13 @@ class Item {
     return false
   }
 
+  checkQualityMore(quality) {
+    if (this.quality > quality) {
+      return true
+    }
+    return false
+  }
+
 }
 
 
@@ -46,7 +53,7 @@ let items = []
 export function updateQuality() {
   for (let i = 0; i < items.length; i++) {
     if (!items[i].checkNameItem(AGED) && !items[i].checkNameItem(BACKSTAGE)) {
-      if (items[i].quality > 0) {
+      if (items[i].checkQualityMore(0)) {
         if (!items[i].checkNameItem(SULFURAS)) {
           items[i].modifyQuality(-1)
         }
@@ -74,7 +81,7 @@ export function updateQuality() {
     if (items[i].sellIn < 0) {
       if (!items[i].checkNameItem(AGED)) {
         if (!items[i].checkNameItem(BACKSTAGE)) {
-          if (items[i].quality > 0) {
+          if (items[i].checkQualityMore(0)) {
             if (!items[i].checkNameItem(SULFURAS)) {
               items[i].modifyQuality(-1)
             }
