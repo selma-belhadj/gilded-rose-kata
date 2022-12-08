@@ -30,6 +30,13 @@ class Item {
     return false
   }
 
+  checkQualityLess(quality) {
+    if (this.quality < quality) {
+      return true
+    }
+    return false
+  }
+
 }
 
 
@@ -45,16 +52,16 @@ export function updateQuality() {
         }
       }
     } else {
-      if (items[i].quality < 50) {
+      if (items[i].checkQualityLess(50)) {
         items[i].modifyQuality(1)
         if (items[i].checkNameItem(BACKSTAGE)) {
           if (items[i].sellIn < 11) {
-            if (items[i].quality < 50) {
+            if (items[i].checkQualityLess(50)) {
               items[i].modifyQuality(1)
             }
           }
           if (items[i].sellIn < 6) {
-            if (items[i].quality < 50) {
+            if (items[i].checkQualityLess(50)) {
               items[i].modifyQuality(1)
             }
           }
@@ -76,7 +83,7 @@ export function updateQuality() {
           items[i].modifyQuality(0)
         }
       } else {
-        if (items[i].quality < 50) {
+        if (items[i].checkQualityLess(50)) {
           items[i].modifyQuality(1)
         }
       }
