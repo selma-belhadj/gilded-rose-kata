@@ -44,6 +44,13 @@ class Item {
     return false
   }
 
+  checkSellInLess(sellIn) {
+    if (this.sellIn < sellIn) {
+      return true
+    }
+    return false
+  }
+
 }
 
 
@@ -62,12 +69,12 @@ export function updateQuality() {
       if (items[i].checkQualityLess(50)) {
         items[i].modifyQuality(1)
         if (items[i].checkNameItem(BACKSTAGE)) {
-          if (items[i].sellIn < 11) {
+          if (items[i].checkSellInLess(11)) {
             if (items[i].checkQualityLess(50)) {
               items[i].modifyQuality(1)
             }
           }
-          if (items[i].sellIn < 6) {
+          if (items[i].checkSellInLess(6)) {
             if (items[i].checkQualityLess(50)) {
               items[i].modifyQuality(1)
             }
@@ -78,7 +85,7 @@ export function updateQuality() {
     if (!items[i].checkNameItem(SULFURAS)) {
       items[i].sellIn = items[i].sellIn - 1;
     }
-    if (items[i].sellIn < 0) {
+    if (items[i].checkSellInLess(0)) {
       if (!items[i].checkNameItem(AGED)) {
         if (!items[i].checkNameItem(BACKSTAGE)) {
           if (items[i].checkQualityMore(0)) {
