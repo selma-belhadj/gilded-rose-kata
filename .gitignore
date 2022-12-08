@@ -1,2 +1,4 @@
 .idea/workspace.xml
 *.pyc
+js/node_modules/
+js/package-lock.json
