@@ -2,25 +2,30 @@ AGED = 'Aged Brie'
 BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert'
 SULFURAS = 'Sulfuras, Hand of Ragnaros'
 
-function Item(name, sellIn, quality) {
-  this.name = name;
-  this.sellIn = sellIn;
-  this.quality = quality;
+class Item {
+  constructor(name, sellIn, quality) {
+    this.name = name;
+    this.sellIn = sellIn;
+    this.quality = quality;
+  }
+
+  modifyQuality(degree) {
+    if (degree ==  0) {
+      return this.quality -= this.quality
+    }
+    return this.quality += this.quality
+  }
+  
+  modifySellIn(degree) {
+    if (degree ==  0) {
+      return this.sellIn -= this.sellIn
+    }
+    return this.sellIn += degree
+  }
+
 }
 
-function modifyQuality(degree) {
-  if (degree ==  0) {
-    return this.quality -= this.quality
-  }
-  return this.quality += this.quality
-}
 
-function modifySellIn(degree) {
-  if (degree ==  0) {
-    return this.sellIn -= this.sellIn
-  }
-  return this.sellIn += degree
-}
 
 let items = []
 
