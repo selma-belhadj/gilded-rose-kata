@@ -23,6 +23,13 @@ class Item {
     return this.sellIn += degree
   }
 
+  checkNameItem(string) {
+    if (this.name == string) {
+      return true
+    }
+    return false
+  }
+
 }
 
 
@@ -31,46 +38,46 @@ let items = []
 
 export function updateQuality() {
   for (let i = 0; i < items.length; i++) {
-    if (items[i].name != 'Aged Brie' && items[i].name != BACKSTAGE) {
+    if (!items[i].checkNameItem(AGED) && !items[i].checkNameItem(BACKSTAGE)) {
       if (items[i].quality > 0) {
-        if (items[i].name != SULFURAS) {
-          items[i].quality = modifyQuality(-1)
+        if (!items[i].checkNameItem(SULFURAS)) {
+          items[i].modifyQuality(-1)
         }
       }
     } else {
       if (items[i].quality < 50) {
-        items[i].quality = modifyQuality(1)
-        if (items[i].name == BACKSTAGE) {
+        items[i].modifyQuality(1)
+        if (items[i].checkNameItem(BACKSTAGE)) {
           if (items[i].sellIn < 11) {
             if (items[i].quality < 50) {
-              items[i].quality = modifyQuality(1)
+              items[i].modifyQuality(1)
             }
           }
           if (items[i].sellIn < 6) {
             if (items[i].quality < 50) {
-              items[i].quality = modifyQuality(1)
+              items[i].modifyQuality(1)
             }
           }
         }
       }
     }
-    if (items[i].name != SULFURAS) {
+    if (!items[i].checkNameItem(SULFURAS)) {
       items[i].sellIn = items[i].sellIn - 1;
     }
     if (items[i].sellIn < 0) {
-      if (items[i].name != 'Aged Brie') {
-        if (items[i].name != BACKSTAGE) {
+      if (!items[i].checkNameItem(AGED)) {
+        if (!items[i].checkNameItem(BACKSTAGE)) {
           if (items[i].quality > 0) {
-            if (items[i].name != SULFURAS) {
-              items[i].quality = modifyQuality(-1)
+            if (!items[i].checkNameItem(SULFURAS)) {
+              items[i].modifyQuality(-1)
             }
           }
         } else {
-          items[i].quality = modifyQuality(0)
+          items[i].modifyQuality(0)
         }
       } else {
         if (items[i].quality < 50) {
-          items[i].quality = modifyQuality(1)
+          items[i].modifyQuality(1)
         }
       }
     }
