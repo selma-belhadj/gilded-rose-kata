@@ -1,8 +1,9 @@
-AGED = 'Aged Brie'
-BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert'
-SULFURAS = 'Sulfuras, Hand of Ragnaros'
+export const AGED = 'Aged Brie';
+export const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
+export const SULFURAS = 'Sulfuras, Hand of Ragnaros';
 
-class Item {
+// export { AGED, BACKSTAGE, SULFURAS };
+export default class Item {
   constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
@@ -53,7 +54,7 @@ class Item {
 
 }
 
-function updateQuality(items) {
+export function updateQuality(items) {
   items.forEach(item => {
     if (!item.checkNameItem(AGED) && !item.checkNameItem(BACKSTAGE)) {
       if (item.checkQualityMore(0)) {
@@ -101,9 +102,9 @@ function updateQuality(items) {
   });
 }
 
-let Item1= new Item(AGED, 0, 5);
-let Item2= new Item('foo2', 0, 0);
-let Item3= new Item('foo3', 2, 6);
-let items = [Item1, Item2, Item3]; // Array of Item objects
-updateQuality(items);
-console.log(items);
+// let Item1= new Item(AGED, 0, 5);
+// let Item2= new Item('foo2', 0, 0);
+// let Item3= new Item('foo3', 2, 6);
+// let items = [Item1, Item2, Item3]; // Array of Item objects
+// updateQuality(items);
+// console.log(items);
