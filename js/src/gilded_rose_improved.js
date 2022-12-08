@@ -53,36 +53,32 @@ class Item {
 
 }
 
-
-
-let items = []
-
-export function updateQuality() {
-  for (let i = 0; i < items.length; i++) {
-    if (!items[i].checkNameItem(AGED) && !items[i].checkNameItem(BACKSTAGE)) {
-      if (items[i].checkQualityMore(0)) {
-        if (!items[i].checkNameItem(SULFURAS)) {
-          items[i].modifyQuality(-1)
+export function updateQuality(items) {
+  items.forEach(item => {
+    if (!item.checkNameItem(AGED) && !item.checkNameItem(BACKSTAGE)) {
+      if (item.checkQualityMore(0)) {
+        if (!item.checkNameItem(SULFURAS)) {
+          item.modifyQuality(-1)
         }
       }
     } else {
-      if (items[i].checkQualityLess(50)) {
-        items[i].modifyQuality(1)
-        if (items[i].checkNameItem(BACKSTAGE)) {
-          if (items[i].checkSellInLess(11)) {
-            if (items[i].checkQualityLess(50)) {
-              items[i].modifyQuality(1)
+      if (item.checkQualityLess(50)) {
+        item.modifyQuality(1)
+        if (item.checkNameItem(BACKSTAGE)) {
+          if (item.checkSellInLess(11)) {
+            if (item.checkQualityLess(50)) {
+              item.modifyQuality(1)
             }
           }
-          if (items[i].checkSellInLess(6)) {
-            if (items[i].checkQualityLess(50)) {
-              items[i].modifyQuality(1)
+          if (item.checkSellInLess(6)) {
+            if (item.checkQualityLess(50)) {
+              item.modifyQuality(1)
             }
           }
         }
       }
     }
-    if (!items[i].checkNameItem(SULFURAS)) {
+    if (!item.checkNameItem(SULFURAS)) {
       items[i].sellIn = items[i].sellIn - 1;
     }
     if (items[i].checkSellInLess(0)) {
@@ -102,5 +98,5 @@ export function updateQuality() {
         }
       }
     }
-  }
+  });
 }
