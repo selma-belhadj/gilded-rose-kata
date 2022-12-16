@@ -29,20 +29,6 @@ class Item
       end
       @sell_in += value
     end
-
-    def check_less(parameter, value)
-        if parameter < value
-          true
-        end
-        false
-    end
-    
-    def check_more(parameter, value)
-        if parameter > value
-            true
-        end
-        false
-    end
     
     def update_quality_item
         if @name != AGED and @name != BACKSTAGE
@@ -52,16 +38,16 @@ class Item
                 end
             end
         else
-            if check_less(@quality, 50)
+            if @quality < 50
                 modify_quality(1)
                 if @name.eql? BACKSTAGE
-                    if check_less(@sell_in, 11) 
-                        if check_less(@quality, 50)
+                    if @sell_in < 11
+                        if @quality < 50
                             modify_quality(1)
                         end
                     end
-                    if check_less(@sell_in, 6)
-                        if check_less(@quality, 50)
+                    if @sell_in < 6
+                        if @quality < 50
                             modify_quality(1)
                         end
                     end
@@ -71,7 +57,7 @@ class Item
         if @name != SULFURAS
           modify_sell_in(-1)
         end
-        if check_less(@sell_in, 0)
+        if @sell_in < 0
             if @name != AGED
                 if @name != BACKSTAGE
                     if @quality > 0
@@ -83,7 +69,7 @@ class Item
                     modify_quality(0)
                 end
             else
-                if check_less(@quality, 50)
+                if @quality < 50
                     modify_quality(1)
                 end
             end
