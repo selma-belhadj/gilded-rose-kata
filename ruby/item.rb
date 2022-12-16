@@ -90,7 +90,3 @@ class Item
         end
     end 
 end
-  
-Item1 = Item.new("Item1", 10, 20)
-puts "Hello World!"
-  
