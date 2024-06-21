@@ -6,7 +6,7 @@ function Item(name, sell_in, quality) {
 
 var items = []
 
-function update_quality() {
+export function update_quality() {
   for (var i = 0; i < items.length; i++) {
     if (items[i].name != 'Aged Brie' && items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
       if (items[i].quality > 0) {
@@ -53,3 +53,4 @@ function update_quality() {
     }
   }
 }
+export default Item;

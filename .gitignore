@@ -1,2 +1,5 @@
 .idea/workspace.xml
 *.pyc
+js/node_modules/
+js/package-lock.json
+js/src/gilded_rose_improved1.js
